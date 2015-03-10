@@ -56,11 +56,7 @@
 
 }
 
--(void)pesquisar{
-    [_searchBar endEditing:YES];
-   // midias = [_itunes buscarMidias:_queryTxt.text];
-    [_tableview reloadData];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
