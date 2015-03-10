@@ -57,7 +57,17 @@ static bool isFirstAccess = YES;
         [filme setDuracao:[item objectForKey:@"trackTimeMillis"]];
         [filme setGenero:[item objectForKey:@"primaryGenreName"]];
         [filme setPais:[item objectForKey:@"country"]];
+        
+       
+        
+        
+        NSString *string = [NSString stringWithFormat:@"%@", [item objectForKey:@"trackPrice"]];
         [filmes addObject:filme];
+        
+;
+        
+        [filme setPreco:string];
+       // [filmes addObject:filme];
     }
     
     return filmes;

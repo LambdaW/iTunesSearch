@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Filme.h"
 
 @interface TableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *nome;
 @property (weak, nonatomic) IBOutlet UILabel *tipo;
+@property (weak, nonatomic) IBOutlet UILabel *preco;
 
+@property (weak, nonatomic) IBOutlet UILabel *pais;
 
 @end

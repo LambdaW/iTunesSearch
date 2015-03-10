@@ -55,6 +55,10 @@
     Filme *filme = [midias objectAtIndex:indexPath.row];
     
     [celula.nome setText:filme.nome];
+    [celula.pais setText:filme.pais];
+    [celula.preco setText:filme.preco];
+    
+    
     [celula.tipo setText:@"Filme"];
     
     return celula;
