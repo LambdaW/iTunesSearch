@@ -11,10 +11,10 @@
 
 @interface TableViewCell : UITableViewCell
 
+@property UISearchBar *pesquisa;
 @property (weak, nonatomic) IBOutlet UILabel *nome;
 @property (weak, nonatomic) IBOutlet UILabel *tipo;
 @property (weak, nonatomic) IBOutlet UILabel *preco;
-
 @property (weak, nonatomic) IBOutlet UILabel *pais;
 
 @end

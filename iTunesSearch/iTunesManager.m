@@ -19,6 +19,7 @@ static bool isFirstAccess = YES;
 
 + (id)sharedInstance
 {
+  
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         isFirstAccess = NO;
@@ -30,6 +31,8 @@ static bool isFirstAccess = YES;
 
 
 - (NSArray *)buscarMidias:(NSString *)termo {
+  
+    
     if (!termo) {
         termo = @"";
     }
@@ -45,6 +48,7 @@ static bool isFirstAccess = YES;
         NSLog(@"Não foi possível fazer a busca. ERRO: %@", error);
         return nil;
     }
+    
     
     NSArray *resultados = [resultado objectForKey:@"results"];
     NSMutableArray *filmes = [[NSMutableArray alloc] init];

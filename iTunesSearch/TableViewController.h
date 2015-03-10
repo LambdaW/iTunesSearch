@@ -12,6 +12,11 @@
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
+@property UIButton *btnPesquisa;
+@property UITextField *searchBar;
+
+
+-(void)pesquisar;
 
 @end
 
