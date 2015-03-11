@@ -93,7 +93,7 @@
     [celula.preco setText:filme.preco];
     
     
-    [celula.tipo setText:@"Filme"];
+    [celula.tipo setText:filme.tipo];
     
     return celula;
 }
