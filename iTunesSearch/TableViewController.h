@@ -16,7 +16,7 @@
 @property UITextField *searchBar;
 
 
--(void)pesquisar;
+-(void)Pesquisa;
 
 @end
 

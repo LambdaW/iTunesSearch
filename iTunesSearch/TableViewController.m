@@ -19,13 +19,19 @@
 
 @implementation TableViewController
 
+-(void)Pesquisa{
+    iTunesManager *itunes = [iTunesManager sharedInstance];
 
+    
+      midias = [itunes buscarMidias:_searchBar.text];
+    [_tableview reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     iTunesManager *itunes = [iTunesManager sharedInstance];
-    midias = [itunes buscarMidias:@"Apple"];
+   // midias = [itunes buscarMidias:_searchBar.text];
     
     
     self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f,self.tableview.bounds.size.width , 70.f)];
@@ -43,16 +49,20 @@
     _btnPesquisa = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_btnPesquisa setTitle:@"Buscar" forState:UIControlStateNormal];
     _btnPesquisa.frame = CGRectMake(220.0f, 35.0f, 90.0f, 46.0f);
-    [_btnPesquisa  addTarget:self
+   /* [_btnPesquisa  addTarget:self
                    action:@selector(pesquisar)
-         forControlEvents:UIControlEventTouchUpInside];
-
+         forControlEvents:UIControlEventTouchUpInside];*/
+    [_btnPesquisa addTarget:self
+                     action:@selector(Pesquisa)
+           forControlEvents:UIControlEventTouchUpInside];
     [self.tableview.tableHeaderView addSubview:_searchBar];
     [self.tableview.tableHeaderView addSubview:_btnPesquisa ];
      [_searchBar setDelegate:self];
+  
     UINib *nib = [UINib nibWithNibName:@"TableViewCell" bundle:nil];
 
     [self.tableview registerNib:nib forCellReuseIdentifier:@"celulaPadrao"];
+    
 
 }
 
