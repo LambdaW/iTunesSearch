@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *preco;
 @property (weak, nonatomic) IBOutlet UILabel *pais;
 
+@property (weak, nonatomic) IBOutlet UIImageView *img;
 @end

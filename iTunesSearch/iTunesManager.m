@@ -66,6 +66,8 @@ static bool isFirstAccess = YES;
         
         
         NSString *string = [NSString stringWithFormat:@"%@", [item objectForKey:@"trackPrice"]];
+        
+        [filme setImagem:[item objectForKey:@"artworkUrl60"]];
         [filmes addObject:filme];
         
 ;
@@ -113,7 +115,8 @@ static bool isFirstAccess = YES;
         return SINGLETON;
     }
     if (isFirstAccess) {
-        [self doesNotRecognizeSelector:_cmd];
+        [self doesNotRecognizeSelector:_cmd]
+        ;
     }
     self = [super init];
     return self;

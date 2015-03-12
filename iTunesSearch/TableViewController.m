@@ -95,6 +95,11 @@
     
     [celula.tipo setText:filme.tipo];
     
+    NSURL *url = [NSURL URLWithString:filme.imagem];
+     NSData *imgData = [NSData dataWithContentsOfURL:url];
+    
+    [celula.imageView setImage:[UIImage imageWithData:imgData]];
+    
     return celula;
 }
 
@@ -104,7 +109,7 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 70;
+    return 80;
 }
 
 
