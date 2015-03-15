@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Filme.h"
+#import "Midias.h"
 
 @interface TableViewCell : UITableViewCell
 

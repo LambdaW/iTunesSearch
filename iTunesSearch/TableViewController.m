@@ -9,7 +9,7 @@
 #import "TableViewController.h"
 #import "TableViewCell.h"
 #import "iTunesManager.h"
-#import "Entidades/Filme.h"
+#import "Entidades/Midias.h"
 
 @interface TableViewController () {
     NSArray *midias;
@@ -30,6 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
+   // NSLog(@"%@", NSLocalizedString(@"a", nil));
+    //[ _btnPesquisa setTitle:NSLocalizedString(@"searchKey", @"") forState:UIControlStateNormal];
+
+    
     iTunesManager *itunes = [iTunesManager sharedInstance];
    // midias = [itunes buscarMidias:_searchBar.text];
     
@@ -47,7 +53,7 @@
    
     
     _btnPesquisa = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_btnPesquisa setTitle:@"Buscar" forState:UIControlStateNormal];
+  //  [_btnPesquisa setTitle:@"Buscar" forState:UIControlStateNormal];
     _btnPesquisa.frame = CGRectMake(220.0f, 35.0f, 90.0f, 46.0f);
    /* [_btnPesquisa  addTarget:self
                    action:@selector(pesquisar)
@@ -86,16 +92,16 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *celula = [self.tableview dequeueReusableCellWithIdentifier:@"celulaPadrao"];
     
-    Filme *filme = [midias objectAtIndex:indexPath.row];
+    Midias *midias1 = [midias objectAtIndex:indexPath.row];
     
-    [celula.nome setText:filme.nome];
-    [celula.pais setText:filme.pais];
-    [celula.preco setText:filme.preco];
+    [celula.nome setText:midias1.nome];
+    [celula.pais setText:midias1.pais];
+    [celula.preco setText:midias1.preco];
     
     
-    [celula.tipo setText:filme.tipo];
+    [celula.tipo setText:midias1.tipo];
     
-    NSURL *url = [NSURL URLWithString:filme.imagem];
+    NSURL *url = [NSURL URLWithString:midias1.imagem];
      NSData *imgData = [NSData dataWithContentsOfURL:url];
     
     [celula.imageView setImage:[UIImage imageWithData:imgData]];
@@ -106,6 +112,26 @@
 
 
 
+-(void)viewDidAppear:(BOOL)animated{
+    
+    if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqual: @"pt"] ){
+    
+        [_btnPesquisa setTitle:NSLocalizedString(@"Pesquisar", nil) forState:UIControlStateNormal];
+    }
+    
+    else if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqual: @"en"]){
+        
+        [_btnPesquisa setTitle:NSLocalizedString(@"Search", nil) forState:UIControlStateNormal];
+    }
+    else if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqual: @"fr"]){
+        
+        [_btnPesquisa setTitle:NSLocalizedString(@"Recherche", nil) forState:UIControlStateNormal];
+
+    }
+    
+
+
+}
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

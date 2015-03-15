@@ -7,7 +7,7 @@
 //
 
 #import "iTunesManager.h"
-#import "Entidades/Filme.h"
+#import "Entidades/Midias.h"
 
 @implementation iTunesManager
 
@@ -51,32 +51,32 @@ static bool isFirstAccess = YES;
     
     
     NSArray *resultados = [resultado objectForKey:@"results"];
-    NSMutableArray *filmes = [[NSMutableArray alloc] init];
+    NSMutableArray *midiasArray = [[NSMutableArray alloc] init];
     
     for (NSDictionary *item in resultados) {
-        Filme *filme = [[Filme alloc] init];
-        [filme setNome:[item objectForKey:@"trackName"]];
-        [filme setTrackId:[item objectForKey:@"trackId"]];
-        [filme setArtista:[item objectForKey:@"artistName"]];
-        [filme setDuracao:[item objectForKey:@"trackTimeMillis"]];
-        [filme setGenero:[item objectForKey:@"primaryGenreName"]];
-        [filme setPais:[item objectForKey:@"country"]];
-        [filme setTipo:[item objectForKey:@"kind"]];
+        Midias *midiaTunes = [[Midias alloc] init];
+        [midiaTunes setNome:[item objectForKey:@"trackName"]];
+        [midiaTunes setTrackId:[item objectForKey:@"trackId"]];
+        [midiaTunes setArtista:[item objectForKey:@"artistName"]];
+        [midiaTunes setDuracao:[item objectForKey:@"trackTimeMillis"]];
+        [midiaTunes setGenero:[item objectForKey:@"primaryGenreName"]];
+        [midiaTunes setPais:[item objectForKey:@"country"]];
+        [midiaTunes setTipo:[item objectForKey:@"kind"]];
        
         
         
         NSString *string = [NSString stringWithFormat:@"%@", [item objectForKey:@"trackPrice"]];
         
-        [filme setImagem:[item objectForKey:@"artworkUrl60"]];
-        [filmes addObject:filme];
+        [midiaTunes setImagem:[item objectForKey:@"artworkUrl60"]];
+        [midiasArray addObject:midiaTunes];
         
 ;
         
-        [filme setPreco:string];
+        [midiaTunes setPreco:string];
        // [filmes addObject:filme];
     }
     
-    return filmes;
+    return midiasArray;
 }
 
 
