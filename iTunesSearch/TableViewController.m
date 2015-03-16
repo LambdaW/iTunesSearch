@@ -116,16 +116,16 @@
     
     if([[[NSLocale preferredLanguages] objectAtIndex:0] isEqual: @"pt"] ){
     
-        [_btnPesquisa setTitle:NSLocalizedString(@"Pesquisar", nil) forState:UIControlStateNormal];
+        [_btnPesquisa setTitle:@"Procurar" forState:UIControlStateNormal];
     }
     
     else if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqual: @"en"]){
         
-        [_btnPesquisa setTitle:NSLocalizedString(@"Search", nil) forState:UIControlStateNormal];
+        [_btnPesquisa setTitle:@"Search" forState:UIControlStateNormal];
     }
     else if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqual: @"fr"]){
         
-        [_btnPesquisa setTitle:NSLocalizedString(@"Recherche", nil) forState:UIControlStateNormal];
+        [_btnPesquisa setTitle:@"Recherche" forState:UIControlStateNormal];
 
     }
     
