@@ -10,20 +10,32 @@
 #import "TableViewCell.h"
 #import "iTunesManager.h"
 #import "Entidades/Midias.h"
+#import "Entidades/Filmes.h"
+#import "Entidades/Musica.h"
+#import "Entidades/Ebook.h"
+#import "Entidades/Podcast.h"
 
 @interface TableViewController () {
-    NSArray *midias;
+    NSArray *filme;
+    NSArray *musica;
+    NSArray *ebook;
+    NSArray *podcast;
 }
 
 @end
 
 @implementation TableViewController
 
--(void)Pesquisa{
+-(void)Pesquisa {
     iTunesManager *itunes = [iTunesManager sharedInstance];
 
     
-      midias = [itunes buscarMidias:_searchBar.text];
+      filme = [itunes buscaFilme:_searchBar.text];
+      musica = [itunes buscaMusica:_searchBar.text];
+      ebook = [itunes buscaEbook:_searchBar.text];
+      podcast  = [itunes buscaPodcast:_searchBar.text];
+
+
     [_tableview reloadData];
 }
 
@@ -39,6 +51,9 @@
     iTunesManager *itunes = [iTunesManager sharedInstance];
    // midias = [itunes buscarMidias:_searchBar.text];
     
+ //   filme= [itunes buscaFilme:_searchBar.text];
+   // musica = [itunes buscaMusica:_searchBar.text];
+
     
     self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f,self.tableview.bounds.size.width , 70.f)];
     
@@ -48,16 +63,12 @@
     _searchBar.placeholder = @"Digite sua busca";
     
 #warning Necessario para que a table view tenha um espaco em relacao ao topo, pois caso contrario o texto ficara atras da barra superior
-  //  self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableview.bounds.size.width, 15.f)];
     
    
     
     _btnPesquisa = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  //  [_btnPesquisa setTitle:@"Buscar" forState:UIControlStateNormal];
     _btnPesquisa.frame = CGRectMake(220.0f, 35.0f, 90.0f, 46.0f);
-   /* [_btnPesquisa  addTarget:self
-                   action:@selector(pesquisar)
-         forControlEvents:UIControlEventTouchUpInside];*/
+ 
     [_btnPesquisa addTarget:self
                      action:@selector(Pesquisa)
            forControlEvents:UIControlEventTouchUpInside];
@@ -82,34 +93,120 @@
 
 #pragma mark - Metodos do UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [midias count];
+    
+    if (section == 0)
+        return filme.count;
+    if (section == 1)
+        return musica.count;
+    if (section == 0)
+        return ebook.count;
+    if (section == 1)
+        return podcast.count;
+    return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //static NSString *CellIdentifier = @"Cell";
+   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     TableViewCell *celula = [self.tableview dequeueReusableCellWithIdentifier:@"celulaPadrao"];
     
-    Midias *midias1 = [midias objectAtIndex:indexPath.row];
+  //Midias *midias1 = [Midias objectAtIndex:indexPath.row];
+   Musica  *musica1 = [musica  objectAtIndex:indexPath.row];
+   Filmes  *filme1 = [filme  objectAtIndex:indexPath.row];
+   Ebook   *ebook1 = [ebook  objectAtIndex:indexPath.row];
+   Podcast *podcast1 =  [podcast objectAtIndex:indexPath.row];
+
     
-    [celula.nome setText:midias1.nome];
-    [celula.pais setText:midias1.pais];
-    [celula.preco setText:midias1.preco];
     
     
-    [celula.tipo setText:midias1.tipo];
+    if (indexPath.section == 0)
+     //  celula.textLabel.text = [filme objectAtIndex:indexPath.row];
+    [celula.nome setText:filme1.nome];
+    [celula.pais setText:filme1.pais];
+    [celula.preco setText:filme1.preco];
+   [celula.tipo setText:filme1.tipo];
+   NSURL *url = [NSURL URLWithString:filme1.imagem];
     
-    NSURL *url = [NSURL URLWithString:midias1.imagem];
-     NSData *imgData = [NSData dataWithContentsOfURL:url];
+    NSData *imgData = [NSData dataWithContentsOfURL:url];
+   
+   [celula.imageView setImage:[UIImage imageWithData:imgData]];
     
-    [celula.imageView setImage:[UIImage imageWithData:imgData]];
+    if (indexPath.section == 1){
+ //   celula.textLabel.text = [musica objectAtIndex:indexPath.row];
+  
+        [celula.nome setText:musica1.nome];
+        [celula.pais setText:musica1.pais];
+        [celula.preco setText:musica1.preco];
+        [celula.tipo setText:musica1.tipo];
+        NSURL *url = [NSURL URLWithString:musica1.imagem];
+        
+        NSData *imgData = [NSData dataWithContentsOfURL:url];
+        
+        [celula.imageView setImage:[UIImage imageWithData:imgData]];
+
+
+    
+    }
+  
+    if (indexPath.section == 2){
+        //   celula.textLabel.text = [musica objectAtIndex:indexPath.row];
+        
+        [celula.nome setText:ebook1.nome];
+        [celula.pais setText:ebook1.pais];
+        [celula.preco setText:ebook1.preco];
+        [celula.tipo setText:ebook1.tipo];
+        NSURL *url = [NSURL URLWithString:ebook1.imagem];
+        
+        NSData *imgData = [NSData dataWithContentsOfURL:url];
+        
+        [celula.imageView setImage:[UIImage imageWithData:imgData]];
+        
+        
+        
+    }
+    if (indexPath.section == 3){
+        //   celula.textLabel.text = [musica objectAtIndex:indexPath.row];
+        
+        [celula.nome setText:podcast1.nome];
+        [celula.pais setText:podcast1.pais];
+        [celula.preco setText:podcast1.preco];
+        [celula.tipo setText:podcast1.tipo];
+        NSURL *url = [NSURL URLWithString:podcast1.imagem];
+        
+        NSData *imgData = [NSData dataWithContentsOfURL:url];
+        
+        [celula.imageView setImage:[UIImage imageWithData:imgData]];
+        
+        
+        
+    }
+
+    
     
     return celula;
+    
+
+ 
+    
 }
 
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0)
+        return @"Filme";
+    if (section == 1)
+        return @"Musica";
+    if (section == 2)
+        return @"Ebook";
+    if (section == 3)
+        return @"Podcast";
+    return @"---";
+}
 
 
 -(void)viewDidAppear:(BOOL)animated{
